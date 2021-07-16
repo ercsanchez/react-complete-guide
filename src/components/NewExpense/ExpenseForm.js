@@ -3,25 +3,43 @@ import "./ExpenseForm.css";
 import { useState } from "react";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  // const [enteredTitle, setEnteredTitle] = useState("");
+  // const [enteredAmount, setEnteredAmount] = useState("");
+  // const [enteredDate, setEnteredDate] = useState("");
+
+  // using one state instead since all of the inputs pertain to a single form
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
 
   // document.getElementById('').addEventListener('click', (event) => {});
   // event is also passed to event handlers in react, same as in vanilla js
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    // setEnteredTitle(event.target.value);
+    setUserInput({
+      ...userInput,
+      enteredTitle: event.target.value,
+    });
     console.log("Title changed!");
-    console.log(event.target.value);
-    console.log(enteredTitle);
+    console.log(userInput['enteredTitle']);  // or userInput.enteredTitle
   };
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-    console.log(enteredAmount);
+    // setEnteredAmount(event.target.value);
+    setUserInput({
+      ...userInput,
+      enteredAmount: event.target.value,
+    });
+    console.log(userInput.enteredAmount);
   };
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
-    console.log(enteredDate);
+    // setEnteredDate(event.target.value);
+    setUserInput({
+      ...userInput,
+      enteredDate: event.target.value,
+    });
+    console.log(userInput.enteredDate);
   };
 
   return (
