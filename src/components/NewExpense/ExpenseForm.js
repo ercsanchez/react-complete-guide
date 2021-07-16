@@ -1,11 +1,27 @@
 import "./ExpenseForm.css";
 
+import { useState } from "react";
+
 const ExpenseForm = () => {
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
+
   // document.getElementById('').addEventListener('click', (event) => {});
   // event is also passed to event handlers in react, same as in vanilla js
   const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value);
     console.log("Title changed!");
-    console.log(event.target.value)
+    console.log(event.target.value);
+    console.log(enteredTitle);
+  };
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+    console.log(enteredAmount);
+  };
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+    console.log(enteredDate);
   };
 
   return (
@@ -17,11 +33,21 @@ const ExpenseForm = () => {
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
-          <input type="number" min="0.01" step="0.01" />
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            onChange={amountChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Date</label>
-          <input type="date" min="2019-01-01" max="2022-12-31" />
+          <input
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={dateChangeHandler}
+          />
         </div>
       </div>
       <div className="new-expense__actions">
