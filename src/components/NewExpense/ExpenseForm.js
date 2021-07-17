@@ -18,12 +18,19 @@ const ExpenseForm = () => {
   // event is also passed to event handlers in react, same as in vanilla js
   const titleChangeHandler = (event) => {
     // setEnteredTitle(event.target.value);
-    setUserInput({
-      ...userInput,
-      enteredTitle: event.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   enteredTitle: event.target.value,
+    // });
+
+    // use correct pattern for updating key:value in a state
+    // always uses updated state snapshot
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value };
     });
+    
     console.log("Title changed!");
-    console.log(userInput['enteredTitle']);  // or userInput.enteredTitle
+    console.log(userInput["enteredTitle"]); // or userInput.enteredTitle
   };
   const amountChangeHandler = (event) => {
     // setEnteredAmount(event.target.value);
