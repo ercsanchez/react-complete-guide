@@ -3,50 +3,64 @@ import "./ExpenseForm.css";
 import { useState } from "react";
 
 const ExpenseForm = () => {
-  // const [enteredTitle, setEnteredTitle] = useState("");
-  // const [enteredAmount, setEnteredAmount] = useState("");
-  // const [enteredDate, setEnteredDate] = useState("");
+  //multiple states
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
-  // using one state instead since all of the inputs pertain to a single form
-  const [userInput, setUserInput] = useState({
-    enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",
-  });
+  // // using one state instead since all of the inputs pertain to a single form
+  // const [userInput, setUserInput] = useState({
+  //   enteredTitle: "",
+  //   enteredAmount: "",
+  //   enteredDate: "",
+  // });
 
   // document.getElementById('').addEventListener('click', (event) => {});
   // event is also passed to event handlers in react, same as in vanilla js
   const titleChangeHandler = (event) => {
-    // setEnteredTitle(event.target.value);
+    // multiple states
+    setEnteredTitle(event.target.value);
+    console.log(enteredTitle);
+
+    // single state
     // setUserInput({
     //   ...userInput,
     //   enteredTitle: event.target.value,
     // });
 
+    // single state: CORRECT PATTERN FOR UPDATING SINGLE STATE
     // use correct pattern for updating key:value in a state
     // always uses updated state snapshot
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: event.target.value };
-    });
-    
+    // setUserInput((prevState) => {
+    //   return { ...prevState, enteredTitle: event.target.value };
+    // });
+    // console.log(userInput["enteredTitle"]); // or userInput.enteredTitle
+
     console.log("Title changed!");
-    console.log(userInput["enteredTitle"]); // or userInput.enteredTitle
   };
   const amountChangeHandler = (event) => {
-    // setEnteredAmount(event.target.value);
-    setUserInput({
-      ...userInput,
-      enteredAmount: event.target.value,
-    });
-    console.log(userInput.enteredAmount);
+    // multiple states
+    setEnteredAmount(event.target.value);
+    console.log(enteredAmount);
+
+    //single state
+    // setUserInput({
+    //   ...userInput,
+    //   enteredAmount: event.target.value,
+    // });
+    // console.log(userInput.enteredAmount);
   };
   const dateChangeHandler = (event) => {
-    // setEnteredDate(event.target.value);
-    setUserInput({
-      ...userInput,
-      enteredDate: event.target.value,
-    });
-    console.log(userInput.enteredDate);
+    // multiple states
+    setEnteredDate(event.target.value);
+    console.log(enteredDate);
+
+    // single state
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
+    // console.log(userInput.enteredDate);
   };
 
   return (
