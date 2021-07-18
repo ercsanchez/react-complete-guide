@@ -67,7 +67,7 @@ const ExpenseForm = (props) => {
     event.preventDefault();
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,  // convert the string value (default data type of input tag) into number to prevent errors
       date: new Date(enteredDate),
     };
     console.log(expenseData);
