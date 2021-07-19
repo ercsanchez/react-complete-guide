@@ -37,20 +37,22 @@ const Login = (props) => {
     isValid: null,
   });
 
-  // useEffect(() => {
-  //   // setTimeout returns identifier for the timer being set
-  //   const identifier = setTimeout(() => {
-  //     console.log("Checking validity");
-  //     setFormIsValid(
-  //       enteredEmail.includes("@") && enteredPassword.trim().length > 6
-  //     );
-  //   }, 500);
+    // alias assignment
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
 
-  //   return () => {
-  //     console.log("Cleaning up");
-  //     clearTimeout(identifier);
-  //   };
-  // }, [setFormIsValid, enteredEmail, enteredPassword]);
+  useEffect(() => {
+    // setTimeout returns identifier for the timer being set
+    const identifier = setTimeout(() => {
+      console.log("Checking validity");
+      setFormIsValid(emailIsValid && passwordIsValid);
+    }, 500);
+
+    return () => {
+      console.log("Cleaning up");
+      clearTimeout(identifier);
+    };
+  }, [setFormIsValid, emailIsValid, passwordIsValid]);
   // setFormIsValid can be omitted coz react ensures that state-setting functions never change
 
   const emailChangeHandler = (event) => {
@@ -59,14 +61,14 @@ const Login = (props) => {
     // if you want email field to validate onChange and not just onBlur
     // setEmailIsValid(event.target.value.includes("@"));
 
-    setFormIsValid(
-      event.target.value.includes("@") && passwordState.isValid
-    );
+    // setFormIsValid(
+    //   event.target.value.includes("@") && passwordState.isValid
+    // );
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
-    setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
+    // setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
   };
 
   const validateEmailHandler = () => {
