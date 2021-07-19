@@ -12,9 +12,18 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+    // setTimeout returns identifier for the timer being set
+    const identifier = setTimeout(() => {
+      console.log("Checking validity");
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    return () => {
+      console.log("Cleaning up");
+      clearTimeout(identifier);
+    };
   }, [setFormIsValid, enteredEmail, enteredPassword]);
   // setFormIsValid can be omitted coz react ensures that state-setting functions never change
 
