@@ -12,6 +12,28 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
+    console.log("Effect runs everytime component renders");
+  });
+
+  useEffect(() => {
+    console.log("Effect runs only once, when component renders for 1st time");
+
+    return () => {
+      console.log("Effect cleanup runs when component is unmounted");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("Effect runs everytime enteredPassword onChange");
+
+    return () => {
+      console.log(
+        "Effect cleanup runs only before useEffect executes, except for initial run"
+      );
+    };
+  }, [enteredPassword]);
+
+  useEffect(() => {
     // setTimeout returns identifier for the timer being set
     const identifier = setTimeout(() => {
       console.log("Checking validity");
