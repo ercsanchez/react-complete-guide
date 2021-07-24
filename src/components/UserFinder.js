@@ -13,9 +13,15 @@ class UserFinder extends Component {
   constructor() {
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
+  }
+
+  // example: when you need to fetch data from DB on first render of comp
+  componentDidMount() {
+    // Send http request...
+    this.setState({ filteredUsers: DUMMY_USERS });
   }
 
   componentDidUpdate(prevProps, prevState) {
