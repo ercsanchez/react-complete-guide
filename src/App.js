@@ -13,7 +13,7 @@ function App() {
     setError(null);
     try {
       // intentionally throw a 4XX response status code by pointing to a non-existent URL on swapi
-      const response = await fetch("https://swapi.dev/api/film");
+      const response = await fetch("https://swapi.dev/api/films");
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
