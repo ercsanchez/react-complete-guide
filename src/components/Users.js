@@ -11,6 +11,13 @@ class Users extends Component {
     };
   }
 
+  // app will crash when searched user is not present
+  componentDidUpdate() {
+    if (this.props.users.length === 0) {
+      throw new Error("No users provided!");
+    }
+  }
+
   toggleUsersHandler() {
     this.setState((currState) => {
       return { showUsers: !currState.showUsers };
