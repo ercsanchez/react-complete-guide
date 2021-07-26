@@ -11,12 +11,15 @@ const SimpleInput = (props) => {
   const formSubmissionHandler = (event) => {
     event.preventDefault(); // prevents default: send HTTP request to server for current page | current page reload and possible app restart | lose state
 
+    if (enteredName.trim() === "") {
+      return;
+    }
     // state
     console.log(enteredName);
 
     // ref
     const enteredValue = nameInputRef.current.value;
-    console.log("ref", enteredValue);
+    console.log(enteredValue);
 
     // nameInputRef.current.value = ""; // ref: not ideal since directly manipulating Real DOM instead of letting React handle that | allowed in special cases if you really just want to reset input
     setEnteredName(""); // state: best practice for resetting input value since react handles DOM manipulation
