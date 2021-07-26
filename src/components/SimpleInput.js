@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
+  const [enteredNameIsValid, setEnteredNameIsValid] = useState(true); // temporary hack to get desired browser behavior but wrong logic since it should be initially set to false
   const nameInputRef = useRef();
 
   const nameInputChangeHandler = (event) => {
@@ -12,8 +13,11 @@ const SimpleInput = (props) => {
     event.preventDefault(); // prevents default: send HTTP request to server for current page | current page reload and possible app restart | lose state
 
     if (enteredName.trim() === "") {
+      setEnteredNameIsValid(false);
       return;
     }
+    setEnteredNameIsValid(true);
+
     // state
     console.log(enteredName);
 
@@ -25,9 +29,13 @@ const SimpleInput = (props) => {
     setEnteredName(""); // state: best practice for resetting input value since react handles DOM manipulation
   };
 
+  const nameInputClasses = enteredNameIsValid
+    ? "form-control"
+    : "form-control invalid";
+
   return (
     <form onSubmit={formSubmissionHandler}>
-      <div className="form-control">
+      <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
           ref={nameInputRef}
@@ -36,6 +44,9 @@ const SimpleInput = (props) => {
           value={enteredName}
           onChange={nameInputChangeHandler}
         />
+        {!enteredNameIsValid && (
+          <p className="error-text">Name must not be empty.</p>
+        )}
       </div>
       <div className="form-actions">
         <button>Submit</button>
