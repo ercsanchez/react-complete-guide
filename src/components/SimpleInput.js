@@ -2,24 +2,17 @@ import { useState } from "react";
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const enteredNameIsValid = enteredName.trim() !== "";
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
-
-    if (event.target.value.trim() !== "") {
-      // event.target.value is most recent value | enteredName may not be the updated value because of scheduled state updates
-      setEnteredNameIsValid(true);
-    }
   };
 
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
-
-    if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
-    }
   };
 
   const formSubmissionHandler = (event) => {
@@ -27,19 +20,15 @@ const SimpleInput = (props) => {
 
     setEnteredNameTouched(true); // we assume that all input fields are touched upon form submission
 
-    if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
+    // state
+    if (!enteredNameIsValid) {
       return;
     }
-    setEnteredNameIsValid(true);
-
-    // state
     console.log(enteredName);
 
     setEnteredName(""); // state: best practice for resetting input value since react handles DOM manipulation
+    setEnteredNameTouched(false);
   };
-
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputClasses = nameInputIsInvalid
     ? "form-control invalid"
