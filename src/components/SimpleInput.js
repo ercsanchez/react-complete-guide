@@ -1,17 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-  const nameInputRef = useRef();
-
-  // useEffect code was only used to demo that initial state of enteredNameIsValid must initially be set to false and not to true
-  useEffect(() => {
-    if (enteredNameIsValid) {
-      console.log("Name Input is valid!");
-    }
-  }, [enteredNameIsValid]);
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -44,11 +36,6 @@ const SimpleInput = (props) => {
     // state
     console.log(enteredName);
 
-    // ref
-    const enteredValue = nameInputRef.current.value;
-    console.log(enteredValue);
-
-    // nameInputRef.current.value = ""; // ref: not ideal since directly manipulating Real DOM instead of letting React handle that | allowed in special cases if you really just want to reset input
     setEnteredName(""); // state: best practice for resetting input value since react handles DOM manipulation
   };
 
@@ -63,7 +50,6 @@ const SimpleInput = (props) => {
       <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
-          ref={nameInputRef}
           type="text"
           id="name"
           value={enteredName}
