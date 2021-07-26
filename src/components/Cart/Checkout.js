@@ -55,6 +55,7 @@ const Checkout = (props) => {
       city: enteredCity,
       postalCode: enteredPostalCode,
     });
+    // add promise.catch to handle errors | see useEffect in AvailableMeals comp
   };
 
   const nameControlClasses = `${classes.control} ${
