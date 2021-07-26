@@ -15,6 +15,11 @@ const SimpleInput = (props) => {
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
+
+    if (event.target.value.trim() !== "") {
+      // event.target.value is most recent value | enteredName may not be the updated value because of scheduled state updates
+      setEnteredNameIsValid(true);
+    }
   };
 
   const nameInputBlurHandler = (event) => {
