@@ -1,4 +1,34 @@
 import { uiActions } from "./ui-slice";
+import { cartActions } from "./cart-slice";
+
+export const getCartData = () => {
+  return async (dispatch) => {
+    const getData = async () => {
+      const response = await fetch(
+        "https://react-http-e9205-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json"
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not fetch cart data!");
+      }
+      const data = await response.json();
+      return data;
+    };
+
+    try {
+      const cartData = await getData();
+      dispatch(cartActions.replaceCart(cartData));
+    } catch (error) {
+      dispatch(
+        uiActions.showNotification({
+          status: "error", // required since setting css classes using status
+          title: "Error!",
+          message: "Fetching cart data failed!",
+        })
+      );
+    }
+  };
+};
 
 export const putCartData = (cart) => {
   return async (dispatch) => {
