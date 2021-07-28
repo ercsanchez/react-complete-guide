@@ -25,7 +25,9 @@ function App() {
       return;
     }
 
-    dispatch(putCartData(cart));
+    if (cart.changed) {
+      dispatch(putCartData(cart));
+    }
   }, [cart, dispatch]); // react-redux will ensure dispatch fn will not change but still add it to remove eslint warning
 
   return (
