@@ -26,6 +26,9 @@ function App() {
             <UserProfile />
           </Route>
         )}
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </Layout>
   );
