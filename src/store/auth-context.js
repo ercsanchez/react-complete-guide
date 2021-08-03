@@ -8,15 +8,19 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const [token, setToken] = useState(null);
+  const initialToken = localStorage.getItem("token"); // synchronous api method
+
+  const [token, setToken] = useState(initialToken); // won't cause infinite loop since initial state is only run on first comp render
   const userIsLoggedIn = !!token; // operator conversion from truthy/falsy to boolean
 
   const loginHandler = (token) => {
     setToken(token);
+    localStorage.setItem("token", token);
   };
 
   const logoutHandler = () => {
     setToken(null);
+    localStorage.removeItem("token");
   };
 
   const contextValue = {
