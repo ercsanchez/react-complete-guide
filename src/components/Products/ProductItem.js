@@ -1,10 +1,15 @@
 import React from "react";
 
 import Card from "../UI/Card";
+import { useStore } from "../../hooks-store/store";
 import "./ProductItem.css";
 
 const ProductItem = (props) => {
-  const toggleFavHandler = () => {};
+  const dispatch = useStore()[1];
+
+  const toggleFavHandler = () => {
+    dispatch("TOGGLE_FAV", props.id);
+  };
 
   return (
     <Card style={{ marginBottom: "1rem" }}>
