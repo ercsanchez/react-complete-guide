@@ -3,6 +3,6 @@ function add2(a: number, b: number) {
 }
 
 // const result = add(2, 5);
-const result = add2("2", "5");
+const result = add2(2, 5);
 
 console.log(result);
