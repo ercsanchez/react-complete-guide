@@ -22,11 +22,14 @@ let hobbies: string[];
 
 hobbies = ["Sports", "Cooking"];
 
-// object type
-let person: {
+// type alias/definition | not an obj definition
+type Person = {
   name: string;
   age: number;
 };
+
+// object type
+let person: Person;
 
 person = {
   name: "Max",
@@ -39,10 +42,7 @@ person = {
 // };
 
 // combining types: array of objects
-let people: {
-  name: string;
-  age: number;
-}[];
+let people: Person[];
 
 // Type inference
 

@@ -14,8 +14,8 @@ hobbies = ["Sports", "Cooking"];
 // object type
 var person;
 person = {
-    name: "Max",
-    age: 32
+  name: "Max",
+  age: 32,
 };
 // error
 // person = {
